@@ -23,17 +23,17 @@ struct CountDownTimerContentLayer: View {
     var body: some View {
         VStack(spacing: 50) {
             Spacer()
-            Text("We are launching Soon")
+            Text(StringConstants.launchingMessage)
                 .font(.system(size: 40))
                 .foregroundStyle(.white)
                 .padding()
                 .fixedSize(horizontal: false, vertical: true)
                 .multilineTextAlignment(.center)
             HStack(spacing: 20) {
-                CardView(countLabel: $viewModel.days, timeLabel: "Days")
-                CardView(countLabel: $viewModel.hours, timeLabel: "Hours")
-                CardView(countLabel: $viewModel.minutes, timeLabel: "Minutes")
-                CardView(countLabel: $viewModel.seconds, timeLabel: "Seconds")
+                CardView(countLabel: $viewModel.days, timeLabel: StringConstants.days)
+                CardView(countLabel: $viewModel.hours, timeLabel: StringConstants.hours)
+                CardView(countLabel: $viewModel.minutes, timeLabel: StringConstants.minutes)
+                CardView(countLabel: $viewModel.seconds, timeLabel: StringConstants.seconds)
             }
             .padding(.horizontal)
             Spacer()
