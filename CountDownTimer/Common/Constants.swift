@@ -12,5 +12,5 @@ struct StringConstants {
     static let hours = "Hours"
     static let minutes = "Minutes"
     static let seconds = "Seconds"
-    static let launchingMessage = "We are launching Soon"
+    static let launchingMessage = "WE'RE LAUNCHING SOON"
 }

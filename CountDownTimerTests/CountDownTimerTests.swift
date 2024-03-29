@@ -8,29 +8,46 @@
 import XCTest
 @testable import CountDownTimer
 
-final class CountDownTimerTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+final class CountDownTimerViewModelTests: XCTestCase {
+    
+    func testUpdateTimerValueWhen20Days() {
+        let futureDate = Calendar.current.date(byAdding: .day, value: 20, to: Date())
+        let countDownTimerVM = CountDownTimerViewModel(futureDate: futureDate ?? Date())
+        countDownTimerVM.updateTimeRamaining()
+        XCTAssertTrue(countDownTimerVM.days == "19")
+        XCTAssertTrue(countDownTimerVM.hours == "23")
+        XCTAssertTrue(countDownTimerVM.minutes == "59")
+        XCTAssertTrue(countDownTimerVM.seconds == "59")
+    }
+    
+    func testUpdateTimerValueWhen1Day() {
+        let futureDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())
+        let countDownTimerVM = CountDownTimerViewModel(futureDate: futureDate ?? Date())
+        countDownTimerVM.updateTimeRamaining()
+        XCTAssertTrue(countDownTimerVM.days == "0")
+        XCTAssertTrue(countDownTimerVM.hours == "23")
+        XCTAssertTrue(countDownTimerVM.minutes == "59")
+        XCTAssertTrue(countDownTimerVM.seconds == "59")
+    }
+    
+    func testUpdateTimerValueWhen1Hour() {
+        let futureDate = Calendar.current.date(byAdding: .hour, value: 1, to: Date())
+        let countDownTimerVM = CountDownTimerViewModel(futureDate: futureDate ?? Date())
+        countDownTimerVM.updateTimeRamaining()
+        XCTAssertTrue(countDownTimerVM.days == "0")
+        XCTAssertTrue(countDownTimerVM.hours == "0")
+        XCTAssertTrue(countDownTimerVM.minutes == "59")
+        XCTAssertTrue(countDownTimerVM.seconds == "59")
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testUpdateTimerValueWhen5Hour() {
+        let futureDate = Calendar.current.date(byAdding: .hour, value: 5, to: Date())
+        let countDownTimerVM = CountDownTimerViewModel(futureDate: futureDate ?? Date())
+        countDownTimerVM.updateTimeRamaining()
+        XCTAssertTrue(countDownTimerVM.days == "0")
+        XCTAssertTrue(countDownTimerVM.hours == "4")
+        XCTAssertTrue(countDownTimerVM.minutes == "59")
+        XCTAssertTrue(countDownTimerVM.seconds == "59")
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
+    
 }
